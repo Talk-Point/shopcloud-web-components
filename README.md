@@ -12,6 +12,8 @@ $ npm run start
 ## Deploy
 
 ```sh
-# Update version in package.json
+$ npm version minor
+$ git commit -m "Release"
+$ git push origin develop
 $ npm publish --access public
 ```
