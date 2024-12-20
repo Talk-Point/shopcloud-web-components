@@ -17,6 +17,7 @@ export namespace Components {
         "inputClass": string;
     }
     interface ScTaxonomy {
+        "name": string;
         "url": string;
     }
     interface ScTextarea {
@@ -85,6 +86,7 @@ declare namespace LocalJSX {
         "onQuerySubmit"?: (event: ScQueryFieldCustomEvent<string>) => void;
     }
     interface ScTaxonomy {
+        "name"?: string;
         "url"?: string;
     }
     interface ScTextarea {
