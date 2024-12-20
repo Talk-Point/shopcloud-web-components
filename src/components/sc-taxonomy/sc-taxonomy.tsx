@@ -7,6 +7,7 @@ import { Component, h, State, Prop, Element } from '@stencil/core';
 })
 export class ScTaxonomy {
   @Prop() url: string;
+  @Prop() name: string;
   
   @State() inputValue: string = '';
   @State() suggestions: string[] = [];
@@ -113,6 +114,7 @@ export class ScTaxonomy {
             type="text"
             ref={el => (this.inputRef = el as HTMLInputElement)}
             class="taxonomy-input"
+            name={this.name}
             value={this.inputValue}
             onFocus={() => this.handleInputFocus()}
             onInput={event => this.handleInputChange(event)}
