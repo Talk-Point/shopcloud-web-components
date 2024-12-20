@@ -1,2 +1,4 @@
-# shopcloud-web-components
+# Web-Components
+
 Shopcloud Web Components
+
