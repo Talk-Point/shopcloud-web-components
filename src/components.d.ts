@@ -19,6 +19,7 @@ export namespace Components {
     interface ScTaxonomy {
         "name": string;
         "url": string;
+        "value": string;
     }
     interface ScTextarea {
         "suggestionUrl": string;
@@ -88,6 +89,7 @@ declare namespace LocalJSX {
     interface ScTaxonomy {
         "name"?: string;
         "url"?: string;
+        "value"?: string;
     }
     interface ScTextarea {
         "suggestionUrl"?: string;

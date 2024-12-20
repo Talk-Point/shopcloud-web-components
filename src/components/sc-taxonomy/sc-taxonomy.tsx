@@ -8,6 +8,7 @@ import { Component, h, State, Prop, Element } from '@stencil/core';
 export class ScTaxonomy {
   @Prop() url: string;
   @Prop() name: string;
+  @Prop() value: string; // Add this line
   
   @State() inputValue: string = '';
   @State() suggestions: string[] = [];
@@ -22,6 +23,10 @@ export class ScTaxonomy {
   async componentWillLoad() {
     if (this.url) {
       await this.fetchData();
+    }
+    console.log("Value:", this.value);
+    if (this.value) {
+      this.inputValue = this.value; // Set the initial value
     }
   }
 
