@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description                                                                   | Type                          | Default |
-| -------- | --------- | ----------------------------------------------------------------------------- | ----------------------------- | ------- |
-| `fields` | `fields`  | Fields can be passed as a JSON string or a parsed array of field definitions. | `FieldDefinition[] \| string` | `[]`    |
+| Property     | Attribute     | Description                                                                   | Type                          | Default     |
+| ------------ | ------------- | ----------------------------------------------------------------------------- | ----------------------------- | ----------- |
+| `fields`     | `fields`      | Fields can be passed as a JSON string or a parsed array of field definitions. | `FieldDefinition[] \| string` | `[]`        |
+| `inputClass` | `input-class` | Optional class for the input field.                                           | `string`                      | `undefined` |
 
 
 ## Events

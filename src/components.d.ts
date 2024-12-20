@@ -11,6 +11,10 @@ export namespace Components {
           * Fields can be passed as a JSON string or a parsed array of field definitions.
          */
         "fields": string | FieldDefinition[];
+        /**
+          * Optional class for the input field.
+         */
+        "inputClass": string;
     }
     interface ScTextarea {
         "suggestionUrl": string;
@@ -57,6 +61,10 @@ declare namespace LocalJSX {
           * Fields can be passed as a JSON string or a parsed array of field definitions.
          */
         "fields"?: string | FieldDefinition[];
+        /**
+          * Optional class for the input field.
+         */
+        "inputClass"?: string;
         /**
           * Emitted whenever the query changes. The detail contains the current query string.
          */
