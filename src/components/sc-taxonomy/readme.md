@@ -11,6 +11,7 @@
 | -------- | --------- | ----------- | -------- | ----------- |
 | `name`   | `name`    |             | `string` | `undefined` |
 | `url`    | `url`     |             | `string` | `undefined` |
+| `value`  | `value`   |             | `string` | `undefined` |
 
 
 ----------------------------------------------
