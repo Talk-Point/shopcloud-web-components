@@ -259,7 +259,6 @@ export class ScQueryField {
           <input
             type="text"
             ref={el => (this.inputRef = el as HTMLInputElement)}
-            class="query-input"
             class={`query-input ${this.inputClass}`}
             value={this.inputValue}
             onFocus={() => this.handleInputFocus()}

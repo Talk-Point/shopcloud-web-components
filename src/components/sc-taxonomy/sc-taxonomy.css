@@ -1,0 +1,44 @@
+.taxonomy-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.taxonomy-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.context-menu {
+  position: absolute;
+  top: 100%; /* directly below input */
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  background: #fff;
+  z-index: 999;
+  max-height: 400px;
+  overflow-y: auto;
+  display: none;
+}
+
+.context-menu.visible {
+  display: block;
+}
+
+.suggestion {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestion:hover {
+  background: #eee;
+}
