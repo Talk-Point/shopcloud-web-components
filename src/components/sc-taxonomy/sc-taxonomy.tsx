@@ -1,4 +1,4 @@
-import { Component, h, State, Prop, Element } from '@stencil/core';
+import { Component, h, State, Prop, Element, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'sc-taxonomy',
@@ -9,7 +9,7 @@ export class ScTaxonomy {
   @Prop() url: string;
   @Prop() name: string;
   @Prop() value: string; // Add this line
-  
+
   @State() inputValue: string = '';
   @State() suggestions: string[] = [];
   @State() allData: string[] = [];
@@ -18,13 +18,18 @@ export class ScTaxonomy {
   @Element() hostElement: HTMLElement;
   inputRef!: HTMLInputElement;
 
+  @Event() valueChange: EventEmitter<string>;
+
+  handleValueChange(newValue: string) {
+    this.valueChange.emit(newValue);
+  }
+
   private debounceTimer: number;
 
   async componentWillLoad() {
     if (this.url) {
       await this.fetchData();
     }
-    console.log("Value:", this.value);
     if (this.value) {
       this.inputValue = this.value; // Set the initial value
     }
@@ -57,8 +62,10 @@ export class ScTaxonomy {
     try {
       const response = await fetch(this.url);
       const text = await response.text();
-      this.allData = text.split('\n').map(line => line.trim()).filter(line => line !== '');
-      console.log(`Fetched ${this.allData.length} lines`);
+      this.allData = text
+        .split('\n')
+        .map(line => line.trim())
+        .filter(line => line !== '');
     } catch (error) {
       console.error('Error fetching data:', error);
       this.allData = [];
@@ -79,7 +86,7 @@ export class ScTaxonomy {
     clearTimeout(this.debounceTimer);
     this.debounceTimer = window.setTimeout(() => {
       this.updateSuggestions(value);
-    }, 300);
+    }, 100);
   }
 
   handleKeyDown(event: KeyboardEvent) {
@@ -91,9 +98,8 @@ export class ScTaxonomy {
 
   handleSuggestionClick(suggestion: string) {
     this.inputValue = suggestion;
-    // If you want to close the menu after selecting:
-    // this.contextMenuVisible = false;
-    // If you want it to remain open to pick again, leave it open.
+    this.handleValueChange(suggestion);
+    this.inputRef.value = suggestion;
     this.inputRef.focus();
   }
 
