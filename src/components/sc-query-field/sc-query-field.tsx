@@ -208,9 +208,9 @@ export class ScQueryField {
   getOperatorsForType(type: FieldType): string[] {
     switch (type) {
       case 'string':
-        return ['LIKE', '='];
+        return ['LIKE', '=', '!=', 'null', 'notnull'];
       case 'bool':
-        return ['='];
+        return ['=', 'null', 'notnull'];
       case 'number':
         return ['>', '<', '>=', '<=', '='];
       default:
