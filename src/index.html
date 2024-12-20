@@ -9,6 +9,8 @@
     <script nomodule src="/build/shopcloud-web-components.js"></script>
   </head>
   <body>
+    <h2>Query Filter</h2>
+
     <form id="query-form">
       <sc-query-field
         fields='[
@@ -42,5 +44,8 @@
         console.log('Final submitted query:', event.detail);
       });
     </script>
+
+  <h2>@ Textarea</h2>
+  <sc-textarea suggestion-url="https://raw.githubusercontent.com/jeanphorn/wordlist/refs/heads/master/usernames.txt"></sc-textarea>
   </body>
 </html>

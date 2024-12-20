@@ -1,0 +1,66 @@
+:host {
+  display: inline-block;
+  position: relative;
+  width: 300px;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+.sc-textarea-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Textarea */
+.sc-textarea-input {
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font: inherit;
+}
+
+/* Mirror to calculate caret position */
+.sc-textarea-mirror {
+  position: absolute;
+  visibility: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  top: 0;
+  left: 0;
+  z-index: -9999;
+  font: inherit;
+  line-height: normal;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+
+/* Suggestions Menu */
+.sc-textarea-suggestions {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.sc-textarea-suggestion-item {
+  padding: 5px 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+.sc-textarea-suggestion-item:hover,
+.sc-textarea-suggestion-item.highlighted {
+  background-color: #eee;
+}

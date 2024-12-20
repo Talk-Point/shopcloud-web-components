@@ -12,6 +12,10 @@ export namespace Components {
          */
         "fields": string | FieldDefinition[];
     }
+    interface ScTextarea {
+        "suggestionUrl": string;
+        "textareaClass": string;
+    }
 }
 export interface ScQueryFieldCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -36,8 +40,15 @@ declare global {
         prototype: HTMLScQueryFieldElement;
         new (): HTMLScQueryFieldElement;
     };
+    interface HTMLScTextareaElement extends Components.ScTextarea, HTMLStencilElement {
+    }
+    var HTMLScTextareaElement: {
+        prototype: HTMLScTextareaElement;
+        new (): HTMLScTextareaElement;
+    };
     interface HTMLElementTagNameMap {
         "sc-query-field": HTMLScQueryFieldElement;
+        "sc-textarea": HTMLScTextareaElement;
     }
 }
 declare namespace LocalJSX {
@@ -55,8 +66,13 @@ declare namespace LocalJSX {
          */
         "onQuerySubmit"?: (event: ScQueryFieldCustomEvent<string>) => void;
     }
+    interface ScTextarea {
+        "suggestionUrl"?: string;
+        "textareaClass"?: string;
+    }
     interface IntrinsicElements {
         "sc-query-field": ScQueryField;
+        "sc-textarea": ScTextarea;
     }
 }
 export { LocalJSX as JSX };
@@ -64,6 +80,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "sc-query-field": LocalJSX.ScQueryField & JSXBase.HTMLAttributes<HTMLScQueryFieldElement>;
+            "sc-textarea": LocalJSX.ScTextarea & JSXBase.HTMLAttributes<HTMLScTextareaElement>;
         }
     }
 }
