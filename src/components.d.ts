@@ -30,6 +30,10 @@ export interface ScQueryFieldCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLScQueryFieldElement;
 }
+export interface ScTaxonomyCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLScTaxonomyElement;
+}
 declare global {
     interface HTMLScQueryFieldElementEventMap {
         "queryChange": string;
@@ -49,7 +53,18 @@ declare global {
         prototype: HTMLScQueryFieldElement;
         new (): HTMLScQueryFieldElement;
     };
+    interface HTMLScTaxonomyElementEventMap {
+        "valueChange": string;
+    }
     interface HTMLScTaxonomyElement extends Components.ScTaxonomy, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLScTaxonomyElementEventMap>(type: K, listener: (this: HTMLScTaxonomyElement, ev: ScTaxonomyCustomEvent<HTMLScTaxonomyElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLScTaxonomyElementEventMap>(type: K, listener: (this: HTMLScTaxonomyElement, ev: ScTaxonomyCustomEvent<HTMLScTaxonomyElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLScTaxonomyElement: {
         prototype: HTMLScTaxonomyElement;
@@ -88,6 +103,7 @@ declare namespace LocalJSX {
     }
     interface ScTaxonomy {
         "name"?: string;
+        "onValueChange"?: (event: ScTaxonomyCustomEvent<string>) => void;
         "url"?: string;
         "value"?: string;
     }
