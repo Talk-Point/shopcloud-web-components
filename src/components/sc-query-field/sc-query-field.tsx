@@ -125,7 +125,7 @@ export class ScQueryField {
     if (parts.length === 3) {
       const [fieldName, operator, value] = parts;
       const fieldArray = this.fields as FieldDefinition[];
-      const field = fieldArray.find((f) => f.name === fieldName);
+      const field = fieldArray.find(f => f.name === fieldName);
 
       if (field && field.type === 'string') {
         // Ensure the value is quoted
@@ -164,13 +164,11 @@ export class ScQueryField {
       // Step: Selecting Field
       this.currentStep = 'field';
       const prefix = parts[0].toLowerCase();
-      this.suggestions = fieldArray
-        .map((f) => f.name)
-        .filter((name) => prefix === '' || name.toLowerCase().startsWith(prefix));
+      this.suggestions = fieldArray.map(f => f.name).filter(name => prefix === '' || name.toLowerCase().startsWith(prefix));
     } else if (parts.length === 2) {
       // Step: Selecting Operator
       this.currentStep = 'operator';
-      const field = fieldArray.find((f) => f.name === parts[0]);
+      const field = fieldArray.find(f => f.name === parts[0]);
       if (field) {
         this.suggestions = this.getOperatorsForType(field.type);
       } else {
@@ -179,7 +177,7 @@ export class ScQueryField {
     } else if (parts.length === 3) {
       // Step: Selecting Value
       this.currentStep = 'value';
-      const field = fieldArray.find((f) => f.name === parts[0]);
+      const field = fieldArray.find(f => f.name === parts[0]);
       if (field) {
         this.suggestions = this.getValuesForType(field.type);
       } else {
@@ -197,7 +195,7 @@ export class ScQueryField {
     if (parts.length === 3) {
       const [fieldName, operator, value] = parts;
       const fieldArray = this.fields as FieldDefinition[];
-      const field = fieldArray.find((f) => f.name === fieldName);
+      const field = fieldArray.find(f => f.name === fieldName);
       if (!field) return false;
 
       if (!this.getOperatorsForType(field.type).includes(operator)) return false;
@@ -252,6 +250,25 @@ export class ScQueryField {
   render() {
     return (
       <div class="query-field">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            ref={el => (this.inputRef = el as HTMLInputElement)}
+            class="query-input"
+            value={this.inputValue}
+            onFocus={() => this.handleInputFocus()}
+            onInput={event => this.handleInputChange(event)}
+            onKeyDown={event => this.handleKeyDown(event)}
+            placeholder="Add filters (field:operator:value)"
+          />
+          <div class={`context-menu ${this.contextMenuVisible ? 'visible' : ''}`}>
+            {this.suggestions.map(suggestion => (
+              <div class="suggestion" onClick={() => this.handleSuggestionClick(suggestion)}>
+                {suggestion}
+              </div>
+            ))}
+          </div>
+        </div>
         <div class="tags">
           {this.filters.map((filter, index) => (
             <span class="tag">
@@ -261,27 +278,6 @@ export class ScQueryField {
               </button>
             </span>
           ))}
-        </div>
-
-        <div class="input-wrapper">
-          <input
-            type="text"
-            ref={(el) => (this.inputRef = el as HTMLInputElement)}
-            class="query-input"
-            value={this.inputValue}
-            onFocus={() => this.handleInputFocus()}
-            onInput={(event) => this.handleInputChange(event)}
-            onKeyDown={(event) => this.handleKeyDown(event)}
-            placeholder="Add filters (field:operator:value)"
-          />
-
-          <div class={`context-menu ${this.contextMenuVisible ? 'visible' : ''}`}>
-            {this.suggestions.map((suggestion) => (
-              <div class="suggestion" onClick={() => this.handleSuggestionClick(suggestion)}>
-                {suggestion}
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     );

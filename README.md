@@ -12,6 +12,8 @@ $ npm run start
 ## Deploy
 
 ```sh
+$ rm-rf dist
+$ npm run build --prod
 $ npm version minor --no-git-tag-version
 $ git commit -m "Release"
 $ git push origin develop
