@@ -16,6 +16,9 @@ export namespace Components {
          */
         "inputClass": string;
     }
+    interface ScTaxonomy {
+        "url": string;
+    }
     interface ScTextarea {
         "suggestionUrl": string;
         "textareaClass": string;
@@ -44,6 +47,12 @@ declare global {
         prototype: HTMLScQueryFieldElement;
         new (): HTMLScQueryFieldElement;
     };
+    interface HTMLScTaxonomyElement extends Components.ScTaxonomy, HTMLStencilElement {
+    }
+    var HTMLScTaxonomyElement: {
+        prototype: HTMLScTaxonomyElement;
+        new (): HTMLScTaxonomyElement;
+    };
     interface HTMLScTextareaElement extends Components.ScTextarea, HTMLStencilElement {
     }
     var HTMLScTextareaElement: {
@@ -52,6 +61,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "sc-query-field": HTMLScQueryFieldElement;
+        "sc-taxonomy": HTMLScTaxonomyElement;
         "sc-textarea": HTMLScTextareaElement;
     }
 }
@@ -74,12 +84,16 @@ declare namespace LocalJSX {
          */
         "onQuerySubmit"?: (event: ScQueryFieldCustomEvent<string>) => void;
     }
+    interface ScTaxonomy {
+        "url"?: string;
+    }
     interface ScTextarea {
         "suggestionUrl"?: string;
         "textareaClass"?: string;
     }
     interface IntrinsicElements {
         "sc-query-field": ScQueryField;
+        "sc-taxonomy": ScTaxonomy;
         "sc-textarea": ScTextarea;
     }
 }
@@ -88,6 +102,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "sc-query-field": LocalJSX.ScQueryField & JSXBase.HTMLAttributes<HTMLScQueryFieldElement>;
+            "sc-taxonomy": LocalJSX.ScTaxonomy & JSXBase.HTMLAttributes<HTMLScTaxonomyElement>;
             "sc-textarea": LocalJSX.ScTextarea & JSXBase.HTMLAttributes<HTMLScTextareaElement>;
         }
     }
