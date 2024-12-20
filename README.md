@@ -12,7 +12,7 @@ $ npm run start
 ## Deploy
 
 ```sh
-$ npm version minor
+$ npm version minor --no-git-tag-version
 $ git commit -m "Release"
 $ git push origin develop
 $ npm publish --access public
