@@ -18,6 +18,11 @@ export class ScQueryField {
   @Prop() fields: string | FieldDefinition[] = [];
 
   /**
+   * Optional class for the input field.
+   */
+  @Prop() inputClass: string; // Optional class for textarea
+
+  /**
    * Emitted whenever the query changes. The detail contains the current query string.
    */
   @Event() queryChange: EventEmitter<string>;
@@ -255,6 +260,7 @@ export class ScQueryField {
             type="text"
             ref={el => (this.inputRef = el as HTMLInputElement)}
             class="query-input"
+            class={`query-input ${this.inputClass}`}
             value={this.inputValue}
             onFocus={() => this.handleInputFocus()}
             onInput={event => this.handleInputChange(event)}
