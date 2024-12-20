@@ -1,7 +1,7 @@
 {
-  "name": "shopcloud-web-components",
+  "name": "@k-st/shopcloud-web-components",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "description": "Shopcloud Web-Components",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
