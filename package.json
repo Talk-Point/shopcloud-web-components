@@ -13,9 +13,9 @@
       "import": "./dist/shopcloud-web-components/shopcloud-web-components.esm.js",
       "require": "./dist/shopcloud-web-components/shopcloud-web-components.cjs.js"
     },
-    "./my-component": {
-      "import": "./dist/components/my-component.js",
-      "types": "./dist/components/my-component.d.ts"
+    "./sc-query-field": {
+      "import": "./dist/components/sc-query-field.js",
+      "types": "./dist/components/sc-query-field.d.ts"
     },
     "./loader": {
       "import": "./loader/index.js",
