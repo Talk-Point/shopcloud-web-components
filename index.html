@@ -1,0 +1,34 @@
+<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>Stencil Component Starter</title> <link rel="modulepreload" href="/build/p-0a7d63fb.js"><script type="module" data-stencil data-resources-url="/build/" data-stencil-namespace="shopcloud-web-components">import{p as e,b as t}from"/build/p-0a7d63fb.js";export{s as setNonce}from"/build/p-0a7d63fb.js";import{g as n}from"/build/p-e1255160.js";var a=()=>{const s=import.meta.url;const t={};if(s!==""){t.resourcesUrl=new URL(".",s).href}return e(t)};a().then((async e=>{await n();return t([["p-09607273",[[1,"sc-query-field",{fields:[1],inputClass:[1,"input-class"],filters:[32],inputValue:[32],suggestions:[32],currentStep:[32],contextMenuVisible:[32]}],[1,"sc-taxonomy",{url:[1],name:[1],value:[1],inputValue:[32],suggestions:[32],allData:[32],contextMenuVisible:[32]}],[1,"sc-textarea",{suggestionUrl:[1,"suggestion-url"],textareaClass:[1,"textarea-class"],suggestions:[32],filteredSuggestions:[32],showSuggestions:[32],currentInputValue:[32],mentionStartIndex:[32],highlightIndex:[32],caretCoords:[32]},[[8,"keydown","handleKeyDown"]]]]]],e)}));
+//# sourceMappingURL=shopcloud-web-components.esm.js.map
+</script> <script nomodule="" src="/build/shopcloud-web-components.js" data-stencil></script> </head> <body> <h2>Query Filter</h2> <form id="query-form"> <sc-query-field fields="[
+          {&quot;name&quot;:&quot;lagerbestand&quot;,&quot;type&quot;:&quot;number&quot;},
+          {&quot;name&quot;:&quot;title&quot;,&quot;type&quot;:&quot;string&quot;},
+          {&quot;name&quot;:&quot;available&quot;,&quot;type&quot;:&quot;bool&quot;}
+        ]"></sc-query-field> <input type="submit" value="Submit"> </form> <script>
+      const form = document.getElementById('query-form');
+      const queryField = document.querySelector('query-field');
+
+      // Prevent form submission
+      form.addEventListener('submit', event => {
+        event.preventDefault(); // Stops the form from submitting
+        console.log('Form submission prevented.');
+        // Access the query value directly:
+        const query = new FormData(form).get('query');
+        console.log('Query from hidden input:', query);
+      });
+
+      // Listen for queryChange
+      queryField.addEventListener('queryChange', event => {
+        console.log('Current query:', event.detail);
+      });
+
+      // Listen for querySubmit
+      queryField.addEventListener('querySubmit', event => {
+        console.log('Final submitted query:', event.detail);
+      });
+    </script> <h2>@ Textarea</h2> <sc-textarea suggestion-url="https://raw.githubusercontent.com/jeanphorn/wordlist/refs/heads/master/usernames.txt"></sc-textarea> <h2>Taxonomy</h2> <sc-taxonomy id="taxonomy" url="https://storage.googleapis.com/shopcloud-taxonomy-public/taxonomy.txt" value="test"></sc-taxonomy> <script>
+      const taxonomy = document.querySelector('#taxonomy');
+      taxonomy.addEventListener('valueChange', event => {
+        console.log('New value:', event.detail);
+      });
+    </script> </body></html>
