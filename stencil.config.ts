@@ -17,6 +17,7 @@ export const config: Config = {
     },
     {
       type: 'www',
+      baseUrl: 'https://talk-point.github.io/',
       serviceWorker: null, // disable service workers
     },
   ],
