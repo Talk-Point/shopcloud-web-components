@@ -1,6 +1,6 @@
 # Web-Components
 
-Shopcloud Web Components
+Shopcloud Web Components - [Storybook](https://talk-point.github.io/shopcloud-web-components/).
 
 ## Development
 
