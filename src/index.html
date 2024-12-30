@@ -1,60 +1,429 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
-
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopCloud Web Components Documentation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
     <script type="module" src="/build/shopcloud-web-components.esm.js"></script>
     <script nomodule src="/build/shopcloud-web-components.js"></script>
-  </head>
-  <body>
-    <h2>Query Filter</h2>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1e40af;
+            --text-color: #1f2937;
+            --border-color: #e5e7eb;
+        }
 
-    <form id="query-form">
-      <sc-query-field
-        fields='[
-          {"name":"lagerbestand","type":"number"},
-          {"name":"title","type":"string"},
-          {"name":"available","type":"bool"}
-        ]'
-      ></sc-query-field>
-      <input type="submit" value="Submit" />
-    </form>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.5;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            position: fixed;
+            width: 250px;
+            height: 100vh;
+            background-color: #f8fafc;
+            border-right: 1px solid var(--border-color);
+            padding: 1.5rem;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+            z-index: 50;
+        }
+
+        .main-content {
+            margin-left: 255px;
+            padding-top: 1rem;
+            padding-left: 4rem;
+            padding-right: 0rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .props-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .component-section {
+                padding: 1rem;
+            }
+
+            .demo-section {
+                padding: 1rem;
+            }
+
+            .code-block {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 0.5rem;
+            }
+
+            .component-section {
+                padding: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+
+            h3 {
+                font-size: 1.125rem;
+            }
+        }
+
+        .component-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+        }
+
+        .demo-section {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background-color: #f8fafc;
+            border-radius: 0.375rem;
+        }
+
+        .code-block {
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: #f8fafc;
+            border-radius: 0.375rem;
+            overflow-x: auto;
+        }
+
+        .props-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .props-table th,
+        .props-table td {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .props-table th {
+            background-color: #f8fafc;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 0.25rem;
+        }
+
+        .nav-link:hover {
+            background-color: #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle" aria-label="Toggle Menu">Menu</button>
+    <nav class="sidebar">
+        <h2>Components</h2>
+        <a href="#query-field" class="nav-link">Query Field</a>
+        <a href="#textarea" class="nav-link">Textarea</a>
+        <a href="#taxonomy" class="nav-link">Taxonomy</a>
+    </nav>
+
+    <main class="main-content">
+        <h1>ShopCloud Web Components</h1>
+        
+        <section id="query-field" class="component-section">
+            <h2>Query Field</h2>
+            <p>A customizable query field component that allows users to build complex queries based on specified fields.</p>
+
+            <h3>Properties</h3>
+            <table class="props-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>fields</td>
+                        <td>array</td>
+                        <td>Array of field definitions with name and type</td>
+                        <td>[]</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Events</h3>
+            <table class="props-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Detail Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>queryChange</td>
+                        <td>string</td>
+                        <td>Fired when the query is modified</td>
+                    </tr>
+                    <tr>
+                        <td>querySubmit</td>
+                        <td>string</td>
+                        <td>Fired when the query is submitted</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Demo</h3>
+            <div class="demo-section">
+                <sc-query-field
+                    fields='[
+                        {"name":"lagerbestand","type":"number"},
+                        {"name":"title","type":"string"},
+                        {"name":"available","type":"bool"}
+                    ]'
+                ></sc-query-field>
+            </div>
+
+            <h3>Usage Example</h3>
+            <pre class="code-block"><code class="language-html">
+&lt;sc-query-field
+    fields='[
+        {"name":"lagerbestand","type":"number"},
+        {"name":"title","type":"string"},
+        {"name":"available","type":"bool"}
+    ]'
+&gt;&lt;/sc-query-field&gt;
+
+&lt;script&gt;
+const queryField = document.querySelector('sc-query-field');
+
+queryField.addEventListener('queryChange', event => {
+    console.log('Query changed:', event.detail);
+});
+
+queryField.addEventListener('querySubmit', event => {
+    console.log('Query submitted:', event.detail);
+});
+&lt;/script&gt;
+</code></pre>
+        </section>
+
+        <section id="textarea" class="component-section">
+            <h2>Textarea</h2>
+            <p>An enhanced textarea component with suggestion capabilities.</p>
+
+            <h3>Properties</h3>
+            <table class="props-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>suggestion-url</td>
+                        <td>string</td>
+                        <td>URL to fetch suggestions from</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Demo</h3>
+            <div class="demo-section">
+                <sc-textarea 
+                    suggestion-url="https://raw.githubusercontent.com/jeanphorn/wordlist/refs/heads/master/usernames.txt">
+                </sc-textarea>
+            </div>
+
+            <h3>Usage Example</h3>
+            <pre class="code-block"><code class="language-html">
+&lt;sc-textarea 
+    suggestion-url="https://raw.githubusercontent.com/jeanphorn/wordlist/refs/heads/master/usernames.txt"
+&gt;&lt;/sc-textarea&gt;
+</code></pre>
+        </section>
+
+        <section id="taxonomy" class="component-section">
+            <h2>Taxonomy</h2>
+            <p>A component for handling hierarchical taxonomy data.</p>
+
+            <h3>Properties</h3>
+            <table class="props-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>url</td>
+                        <td>string</td>
+                        <td>URL to fetch taxonomy data</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>value</td>
+                        <td>string</td>
+                        <td>Selected taxonomy value</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Events</h3>
+            <table class="props-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Detail Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>valueChange</td>
+                        <td>string</td>
+                        <td>Fired when the selected taxonomy value changes</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Demo</h3>
+            <div class="demo-section">
+                <sc-taxonomy 
+                    url="https://storage.googleapis.com/shopcloud-taxonomy-public/taxonomy.txt"
+                    value="test">
+                </sc-taxonomy>
+            </div>
+
+            <h3>Usage Example</h3>
+            <pre class="code-block"><code class="language-html">
+&lt;sc-taxonomy 
+    url="https://storage.googleapis.com/shopcloud-taxonomy-public/taxonomy.txt"
+    value="test"
+&gt;&lt;/sc-taxonomy&gt;
+
+&lt;script&gt;
+const taxonomy = document.querySelector('sc-taxonomy');
+taxonomy.addEventListener('valueChange', event => {
+    console.log('Taxonomy value changed:', event.detail);
+});
+&lt;/script&gt;
+</code></pre>
+        </section>
+    </main>
+
     <script>
-      const form = document.getElementById('query-form');
-      const queryField = document.querySelector('query-field');
+        // Mobile menu functionality
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const mainContent = document.querySelector('.main-content');
 
-      // Prevent form submission
-      form.addEventListener('submit', event => {
-        event.preventDefault(); // Stops the form from submitting
-        console.log('Form submission prevented.');
-        // Access the query value directly:
-        const query = new FormData(form).get('query');
-        console.log('Query from hidden input:', query);
-      });
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
 
-      // Listen for queryChange
-      queryField.addEventListener('queryChange', event => {
-        console.log('Current query:', event.detail);
-      });
+        // Close sidebar when clicking outside on mobile
+        mainContent.addEventListener('click', () => {
+            if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
 
-      // Listen for querySubmit
-      queryField.addEventListener('querySubmit', event => {
-        console.log('Final submitted query:', event.detail);
-      });
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Initialize syntax highlighting
+        Prism.highlightAll();
+
+        // Demo functionality for Query Field
+        const queryField = document.querySelector('sc-query-field');
+        if (queryField) {
+            queryField.addEventListener('queryChange', event => {
+                console.log('Query changed:', event.detail);
+            });
+            queryField.addEventListener('querySubmit', event => {
+                console.log('Query submitted:', event.detail);
+            });
+        }
+
+        // Demo functionality for Taxonomy
+        const taxonomy = document.querySelector('sc-taxonomy');
+        if (taxonomy) {
+            taxonomy.addEventListener('valueChange', event => {
+                console.log('Taxonomy value changed:', event.detail);
+            });
+        }
     </script>
-
-    <h2>@ Textarea</h2>
-    <sc-textarea suggestion-url="https://raw.githubusercontent.com/jeanphorn/wordlist/refs/heads/master/usernames.txt"></sc-textarea>
-
-    <h2>Taxonomy</h2>
-    <sc-taxonomy id="taxonomy" url="https://storage.googleapis.com/shopcloud-taxonomy-public/taxonomy.txt" value="test"></sc-taxonomy>
-    <script>
-      const taxonomy = document.querySelector('#taxonomy');
-      taxonomy.addEventListener('valueChange', event => {
-        console.log('New value:', event.detail);
-      });
-    </script>
-  </body>
+</body>
 </html>
