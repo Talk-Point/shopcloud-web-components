@@ -1,165 +1,225 @@
-<!doctype html><html lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>ShopCloud Web Components Documentation</title> <link rel="modulepreload" href="/shopcloud-web-components/build/p-0a7d63fb.js"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"> <script type="module" data-stencil data-resources-url="/shopcloud-web-components/build/" data-stencil-namespace="shopcloud-web-components">import{p as e,b as t}from"/shopcloud-web-components/build/p-0a7d63fb.js";export{s as setNonce}from"/shopcloud-web-components/build/p-0a7d63fb.js";import{g as n}from"/shopcloud-web-components/build/p-e1255160.js";var a=()=>{const s=import.meta.url;const t={};if(s!==""){t.resourcesUrl=new URL(".",s).href}return e(t)};a().then((async e=>{await n();return t([["p-09607273",[[1,"sc-query-field",{fields:[1],inputClass:[1,"input-class"],filters:[32],inputValue:[32],suggestions:[32],currentStep:[32],contextMenuVisible:[32]}],[1,"sc-taxonomy",{url:[1],name:[1],value:[1],inputValue:[32],suggestions:[32],allData:[32],contextMenuVisible:[32]}],[1,"sc-textarea",{suggestionUrl:[1,"suggestion-url"],textareaClass:[1,"textarea-class"],suggestions:[32],filteredSuggestions:[32],showSuggestions:[32],currentInputValue:[32],mentionStartIndex:[32],highlightIndex:[32],caretCoords:[32]},[[8,"keydown","handleKeyDown"]]]]]],e)}));
-//# sourceMappingURL=shopcloud-web-components.esm.js.map
-</script> <script nomodule="" src="/shopcloud-web-components/build/shopcloud-web-components.js" data-stencil></script> <style>:root {
-            --primary-color: #3b82f6;
-            --secondary-color: #1e40af;
-            --text-color: #1f2937;
-            --border-color: #e5e7eb;
-        }
+<!doctype html><html lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>ShopCloud Web Components Documentation</title> <link rel="modulepreload" href="/build/p-b7750072.js"><link rel="modulepreload" href="/build/p-10b1baf4.js"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"> <script type="module" src="/build/p-b7750072.js" data-stencil data-resources-url="/build/" data-stencil-namespace="shopcloud-web-components"></script> <script nomodule="" src="/build/shopcloud-web-components.js" data-stencil></script> <style>:root {
+        --primary-color: #3b82f6;
+        --secondary-color: #1e40af;
+        --text-color: #1f2937;
+        --border-color: #e5e7eb;
+        --background-color: #ffffff;
+        --sidebar-background: #f8fafc;
+        --demo-background: #f8fafc;
+        --code-background: #f8fafc;
+        --table-header-background: #f8fafc;
+      }
 
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            line-height: 1.5;
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-        }
+      [data-theme='dark'] {
+        --primary-color: #60a5fa;
+        --secondary-color: #3b82f6;
+        --text-color: #e5e7eb;
+        --border-color: #374151;
+        --background-color: #111827;
+        --sidebar-background: #1f2937;
+        --demo-background: #1f2937;
+        --code-background: #374151;
+        --code-border-color: #4b5563;
+        --table-header-background: #1f2937;
+      }
 
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        line-height: 1.5;
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+        background-color: var(--background-color);
+      }
+
+      .sidebar {
+        position: fixed;
+        width: 250px;
+        height: 100vh;
+        background-color: var(--sidebar-background);
+        border-right: 1px solid var(--border-color);
+        padding: 1.5rem;
+        overflow-y: auto;
+        transition: transform 0.3s ease;
+        z-index: 50;
+      }
+
+      .main-content {
+        margin-left: 255px;
+        padding-top: 1rem;
+        padding-left: 4rem;
+        padding-right: 0rem;
+      }
+
+      .menu-toggle {
+        display: none;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 100;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        cursor: pointer;
+      }
+
+      .component-section {
+        margin-bottom: 3rem;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        background-color: var(--background-color);
+      }
+
+      .demo-section {
+        margin: 1.5rem 0;
+        padding: 1.5rem;
+        background-color: var(--demo-background);
+        border-radius: 0.375rem;
+      }
+
+      .code-block {
+        margin: 1rem 0;
+        padding: 1rem;
+        background-color: var(--code-background);
+        border: 1px solid var(--code-border-color);
+        border-radius: 0.375rem;
+        overflow-x: auto;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      }
+
+      .props-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+      }
+
+      .props-table th,
+      .props-table td {
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        text-align: left;
+      }
+
+      .props-table th {
+        background-color: var(--table-header-background);
+      }
+
+      .nav-link {
+        display: block;
+        padding: 0.5rem;
+        color: var(--text-color);
+        text-decoration: none;
+        border-radius: 0.25rem;
+      }
+
+      .nav-link:hover {
+        background-color: var(--border-color);
+      }
+
+      @media (max-width: 768px) {
         .sidebar {
-            position: fixed;
-            width: 250px;
-            height: 100vh;
-            background-color: #f8fafc;
-            border-right: 1px solid var(--border-color);
-            padding: 1.5rem;
-            overflow-y: auto;
-            transition: transform 0.3s ease;
-            z-index: 50;
+          transform: translateX(-100%);
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .sidebar.active {
+          transform: translateX(0);
         }
 
         .main-content {
-            margin-left: 255px;
-            padding-top: 1rem;
-            padding-left: 4rem;
-            padding-right: 0rem;
+          margin-left: 0;
+          padding: 1rem;
         }
 
         .menu-toggle {
-            display: none;
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 100;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 1rem;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .props-table {
-                display: block;
-                overflow-x: auto;
-                white-space: nowrap;
-            }
-
-            .component-section {
-                padding: 1rem;
-            }
-
-            .demo-section {
-                padding: 1rem;
-            }
-
-            .code-block {
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-content {
-                padding: 0.5rem;
-            }
-
-            .component-section {
-                padding: 0.75rem;
-                margin-bottom: 1.5rem;
-            }
-
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            h2 {
-                font-size: 1.25rem;
-            }
-
-            h3 {
-                font-size: 1.125rem;
-            }
-        }
-
-        .component-section {
-            margin-bottom: 3rem;
-            padding: 2rem;
-            border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-        }
-
-        .demo-section {
-            margin: 1.5rem 0;
-            padding: 1.5rem;
-            background-color: #f8fafc;
-            border-radius: 0.375rem;
-        }
-
-        .code-block {
-            margin: 1rem 0;
-            padding: 1rem;
-            background-color: #f8fafc;
-            border-radius: 0.375rem;
-            overflow-x: auto;
+          display: block;
         }
 
         .props-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
+          display: block;
+          overflow-x: auto;
+          white-space: nowrap;
         }
 
-        .props-table th,
-        .props-table td {
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            text-align: left;
+        .component-section {
+          padding: 1rem;
         }
 
-        .props-table th {
-            background-color: #f8fafc;
+        .demo-section {
+          padding: 1rem;
         }
 
-        .nav-link {
-            display: block;
-            padding: 0.5rem;
-            color: var(--text-color);
-            text-decoration: none;
-            border-radius: 0.25rem;
+        .code-block {
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .main-content {
+          padding: 0.5rem;
         }
 
-        .nav-link:hover {
-            background-color: #e5e7eb;
-        }</style> </head> <body> <button class="menu-toggle" aria-label="Toggle Menu">Menu</button> <nav class="sidebar"> <h2>Components</h2> <a href="#query-field" class="nav-link">Query Field</a> <a href="#textarea" class="nav-link">Textarea</a> <a href="#taxonomy" class="nav-link">Taxonomy</a> </nav> <main class="main-content"> <h1>ShopCloud Web Components</h1> <section id="query-field" class="component-section"> <h2>Query Field</h2> <p>A customizable query field component that allows users to build complex queries based on specified fields.</p> <h3>Properties</h3> <table class="props-table"> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr> <td>fields</td> <td>array</td> <td>Array of field definitions with name and type</td> <td>[]</td> </tr> </tbody> </table> <h3>Events</h3> <table class="props-table"> <thead> <tr> <th>Name</th> <th>Detail Type</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td>queryChange</td> <td>string</td> <td>Fired when the query is modified</td> </tr> <tr> <td>querySubmit</td> <td>string</td> <td>Fired when the query is submitted</td> </tr> </tbody> </table> <h3>Demo</h3> <div class="demo-section"> <sc-query-field fields="[
+        .component-section {
+          padding: 0.75rem;
+          margin-bottom: 1.5rem;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        h2 {
+          font-size: 1.25rem;
+        }
+
+        h3 {
+          font-size: 1.125rem;
+        }
+      }
+
+      .theme-toggle {
+        position: fixed;
+        top: 1rem;
+        right: 5rem;
+        z-index: 100;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+      }
+
+      .theme-toggle .sun-icon {
+        display: none;
+      }
+
+      .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      [data-theme='dark'] .theme-toggle .sun-icon {
+        display: block;
+      }
+
+      [data-theme='dark'] .theme-toggle .moon-icon {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .theme-toggle {
+          right: 4.5rem;
+        }
+      }</style> </head> <body> <button class="menu-toggle" aria-label="Toggle Menu">Menu</button> <nav class="sidebar"> <h2>Components</h2> <a href="#query-field" class="nav-link">Query Field</a> <a href="#textarea" class="nav-link">Textarea</a> <a href="#taxonomy" class="nav-link">Taxonomy</a> </nav> <main class="main-content"> <h1>ShopCloud Web Components</h1> <div> <button class="theme-toggle" aria-label="Toggle Theme"> <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> </div> <section id="query-field" class="component-section"> <h2>Query Field</h2> <p>A customizable query field component that allows users to build complex queries based on specified fields.</p> <h3>Properties</h3> <table class="props-table"> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr> <td>fields</td> <td>array</td> <td>Array of field definitions with name and type</td> <td>[]</td> </tr> </tbody> </table> <h3>Events</h3> <table class="props-table"> <thead> <tr> <th>Name</th> <th>Detail Type</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td>queryChange</td> <td>string</td> <td>Fired when the query is modified</td> </tr> <tr> <td>querySubmit</td> <td>string</td> <td>Fired when the query is submitted</td> </tr> </tbody> </table> <h3>Demo</h3> <div class="demo-section"> <sc-query-field fields="[
                         {&quot;name&quot;:&quot;lagerbestand&quot;,&quot;type&quot;:&quot;number&quot;},
                         {&quot;name&quot;:&quot;title&quot;,&quot;type&quot;:&quot;string&quot;},
                         {&quot;name&quot;:&quot;available&quot;,&quot;type&quot;:&quot;bool&quot;}
@@ -199,49 +259,85 @@ taxonomy.addEventListener('valueChange', event =&gt; {
     console.log('Taxonomy value changed:', event.detail);
 });
 &lt;/script&gt;
-</code></pre> </section> </main> <script>
-        // Mobile menu functionality
-        const menuToggle = document.querySelector('.menu-toggle');
-        const sidebar = document.querySelector('.sidebar');
-        const mainContent = document.querySelector('.main-content');
+</code></pre> </section> <section id="spreadsheet-uploader" class="component-section"> <h2>Taxonomy</h2> <p>A component for handling hierarchical taxonomy data.</p> <h3>Properties</h3> <table class="props-table"> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr> <td>url</td> <td>string</td> <td>URL to fetch taxonomy data</td> <td>-</td> </tr> <tr> <td>value</td> <td>string</td> <td>Selected taxonomy value</td> <td>-</td> </tr> </tbody> </table> <h3>Events</h3> <table class="props-table"> <thead> <tr> <th>Name</th> <th>Detail Type</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td>valueChange</td> <td>string</td> <td>Fired when the selected taxonomy value changes</td> </tr> </tbody> </table> <h3>Demo</h3> <div class="demo-section"> <sc-spreadsheet-uploader storage-key="demo-data" api-url="https://run.mocky.io/v3/593751b9-25ed-4c77-955e-af5030b12ae6" api-method="POST"></sc-spreadsheet-uploader> </div> </section> </main> <script>
+      // Theme toggle functionality
+      const themeToggle = document.querySelector('.theme-toggle');
+      const html = document.documentElement;
 
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
-
-        // Close sidebar when clicking outside on mobile
-        mainContent.addEventListener('click', () => {
-            if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
-                sidebar.classList.remove('active');
-            }
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                sidebar.classList.remove('active');
-            }
-        });
-
-        // Initialize syntax highlighting
-        Prism.highlightAll();
-
-        // Demo functionality for Query Field
-        const queryField = document.querySelector('sc-query-field');
-        if (queryField) {
-            queryField.addEventListener('queryChange', event => {
-                console.log('Query changed:', event.detail);
-            });
-            queryField.addEventListener('querySubmit', event => {
-                console.log('Query submitted:', event.detail);
-            });
+      // Check for saved theme preference, otherwise use system preference
+      const getPreferredTheme = () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          return savedTheme;
         }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      };
 
-        // Demo functionality for Taxonomy
-        const taxonomy = document.querySelector('sc-taxonomy');
-        if (taxonomy) {
-            taxonomy.addEventListener('valueChange', event => {
-                console.log('Taxonomy value changed:', event.detail);
-            });
+      // Apply theme
+      const setTheme = theme => {
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      };
+
+      // Initialize theme
+      setTheme(getPreferredTheme());
+
+      // Toggle theme
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+      });
+
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+          setTheme(e.matches ? 'dark' : 'light');
         }
+      });
+    </script> <script>
+      // Mobile menu functionality
+      const menuToggle = document.querySelector('.menu-toggle');
+      const sidebar = document.querySelector('.sidebar');
+      const mainContent = document.querySelector('.main-content');
+
+      menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+      });
+
+      // Close sidebar when clicking outside on mobile
+      mainContent.addEventListener('click', () => {
+        if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+          sidebar.classList.remove('active');
+        }
+      });
+
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          sidebar.classList.remove('active');
+        }
+      });
+
+      // Initialize syntax highlighting
+      Prism.highlightAll();
+
+      // Demo functionality for Query Field
+      const queryField = document.querySelector('sc-query-field');
+      if (queryField) {
+        queryField.addEventListener('queryChange', event => {
+          console.log('Query changed:', event.detail);
+        });
+        queryField.addEventListener('querySubmit', event => {
+          console.log('Query submitted:', event.detail);
+        });
+      }
+
+      // Demo functionality for Taxonomy
+      const taxonomy = document.querySelector('sc-taxonomy');
+      if (taxonomy) {
+        taxonomy.addEventListener('valueChange', event => {
+          console.log('Taxonomy value changed:', event.detail);
+        });
+      }
     </script> </body></html>
