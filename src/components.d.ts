@@ -16,6 +16,12 @@ export namespace Components {
          */
         "inputClass": string;
     }
+    interface ScSpreadsheetUploader {
+        "apiHeaders": string;
+        "apiMethod": string;
+        "apiUrl": string;
+        "storageKey": string;
+    }
     interface ScTaxonomy {
         "name": string;
         "url": string;
@@ -53,6 +59,12 @@ declare global {
         prototype: HTMLScQueryFieldElement;
         new (): HTMLScQueryFieldElement;
     };
+    interface HTMLScSpreadsheetUploaderElement extends Components.ScSpreadsheetUploader, HTMLStencilElement {
+    }
+    var HTMLScSpreadsheetUploaderElement: {
+        prototype: HTMLScSpreadsheetUploaderElement;
+        new (): HTMLScSpreadsheetUploaderElement;
+    };
     interface HTMLScTaxonomyElementEventMap {
         "valueChange": string;
     }
@@ -78,6 +90,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "sc-query-field": HTMLScQueryFieldElement;
+        "sc-spreadsheet-uploader": HTMLScSpreadsheetUploaderElement;
         "sc-taxonomy": HTMLScTaxonomyElement;
         "sc-textarea": HTMLScTextareaElement;
     }
@@ -101,6 +114,12 @@ declare namespace LocalJSX {
          */
         "onQuerySubmit"?: (event: ScQueryFieldCustomEvent<string>) => void;
     }
+    interface ScSpreadsheetUploader {
+        "apiHeaders"?: string;
+        "apiMethod"?: string;
+        "apiUrl"?: string;
+        "storageKey"?: string;
+    }
     interface ScTaxonomy {
         "name"?: string;
         "onValueChange"?: (event: ScTaxonomyCustomEvent<string>) => void;
@@ -113,6 +132,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "sc-query-field": ScQueryField;
+        "sc-spreadsheet-uploader": ScSpreadsheetUploader;
         "sc-taxonomy": ScTaxonomy;
         "sc-textarea": ScTextarea;
     }
@@ -122,6 +142,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "sc-query-field": LocalJSX.ScQueryField & JSXBase.HTMLAttributes<HTMLScQueryFieldElement>;
+            "sc-spreadsheet-uploader": LocalJSX.ScSpreadsheetUploader & JSXBase.HTMLAttributes<HTMLScSpreadsheetUploaderElement>;
             "sc-taxonomy": LocalJSX.ScTaxonomy & JSXBase.HTMLAttributes<HTMLScTaxonomyElement>;
             "sc-textarea": LocalJSX.ScTextarea & JSXBase.HTMLAttributes<HTMLScTextareaElement>;
         }

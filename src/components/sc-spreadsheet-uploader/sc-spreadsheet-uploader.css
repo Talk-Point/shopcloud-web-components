@@ -1,0 +1,157 @@
+:host {
+  /* Light mode variables */
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --border-color: #cccccc;
+  --input-background: #ffffff;
+  --row-border: #eeeeee;
+  --button-background: #007bff;
+  --button-color: #ffffff;
+  --button-disabled-background: #cccccc;
+  --button-disabled-color: #666666;
+  --error-color: #dc3545;
+  --success-color: #28a745;
+  --pending-color: #ffd700;
+  --reference-background: #f8f9fa;
+  --reference-color: #495057;
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    /* Dark mode variables */
+    --background-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --border-color: #404040;
+    --input-background: #2d2d2d;
+    --row-border: #333333;
+    --button-background: #0056b3;
+    --button-color: #ffffff;
+    --button-disabled-background: #404040;
+    --button-disabled-color: #808080;
+    --error-color: #ff4d4d;
+    --success-color: #2fb344;
+    --pending-color: #ffd700;
+    --reference-background: #2d2d2d;
+    --reference-color: #b8b8b8;
+  }
+}
+
+.container {
+  padding: 20px;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.input-section {
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-background);
+  color: var(--text-color);
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--button-background);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+button {
+  padding: 10px 20px;
+  background-color: var(--button-background);
+  color: var(--button-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--button-background) 85%, black);
+}
+
+button:disabled {
+  background-color: var(--button-disabled-background);
+  color: var(--button-disabled-color);
+  cursor: not-allowed;
+}
+
+.data-grid {
+  margin-top: 20px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--row-border);
+  margin-bottom: 5px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.row:hover {
+  background-color: color-mix(in srgb, var(--background-color) 95%, var(--text-color));
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.row.pending .status-indicator {
+  background-color: var(--pending-color);
+}
+
+.row.success .status-indicator {
+  background-color: var(--success-color);
+}
+
+.row.error .status-indicator {
+  background-color: var(--error-color);
+}
+
+.row-data {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.row-data span {
+  padding: 2px 6px;
+  border-radius: 3px;
+  background-color: color-mix(in srgb, var(--background-color) 97%, var(--text-color));
+}
+
+span.reference {
+  background-color: var(--reference-background);
+  color: var(--reference-color);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  font-weight: 500;
+}
+
+.error-message {
+  color: var(--error-color);
+  margin-left: 10px;
+  font-size: 0.9em;
+  flex-basis: 100%;
+  margin-top: 5px;
+}
