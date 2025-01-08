@@ -21,6 +21,5 @@ $ git push origin develop
 $ npm publish --access public
 
 # Deploy Storybook to Github Pages
-$ npm run postbuild
 $ npm run publish
 ```
