@@ -9,6 +9,7 @@ export namespace Components {
     interface ScQueryField {
         /**
           * Fields can be passed as a JSON string or a parsed array of field definitions.
+          * @default []
          */
         "fields": string | FieldDefinition[];
         /**
@@ -17,9 +18,21 @@ export namespace Components {
         "inputClass": string;
     }
     interface ScSpreadsheetUploader {
+        /**
+          * @default '{}'
+         */
         "apiHeaders": string;
+        /**
+          * @default 'POST'
+         */
         "apiMethod": string;
+        /**
+          * @default ''
+         */
         "apiUrl": string;
+        /**
+          * @default 'spreadsheet-data'
+         */
         "storageKey": string;
     }
     interface ScTaxonomy {
@@ -99,6 +112,7 @@ declare namespace LocalJSX {
     interface ScQueryField {
         /**
           * Fields can be passed as a JSON string or a parsed array of field definitions.
+          * @default []
          */
         "fields"?: string | FieldDefinition[];
         /**
@@ -115,9 +129,21 @@ declare namespace LocalJSX {
         "onQuerySubmit"?: (event: ScQueryFieldCustomEvent<string>) => void;
     }
     interface ScSpreadsheetUploader {
+        /**
+          * @default '{}'
+         */
         "apiHeaders"?: string;
+        /**
+          * @default 'POST'
+         */
         "apiMethod"?: string;
+        /**
+          * @default ''
+         */
         "apiUrl"?: string;
+        /**
+          * @default 'spreadsheet-data'
+         */
         "storageKey"?: string;
     }
     interface ScTaxonomy {
