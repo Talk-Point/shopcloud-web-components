@@ -1,6 +1,6 @@
 {
   "name": "@k-st/shopcloud-web-components",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "description": "Shopcloud Web-Components",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -53,6 +53,10 @@
     "gh-pages": "^6.2.0"
   },
   "overrides": {
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "basic-ftp": ">=5.2.0",
+    "minimatch": ">=3.1.4",
+    "picomatch": ">=2.3.2",
+    "brace-expansion": ">=1.1.13"
   }
 }
