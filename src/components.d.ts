@@ -156,21 +156,42 @@ declare namespace LocalJSX {
         "suggestionUrl"?: string;
         "textareaClass"?: string;
     }
+
+    interface ScQueryFieldAttributes {
+        "fields": string | FieldDefinition[];
+        "inputClass": string;
+    }
+    interface ScSpreadsheetUploaderAttributes {
+        "storageKey": string;
+        "apiUrl": string;
+        "apiMethod": string;
+        "apiHeaders": string;
+    }
+    interface ScTaxonomyAttributes {
+        "url": string;
+        "name": string;
+        "value": string;
+    }
+    interface ScTextareaAttributes {
+        "suggestionUrl": string;
+        "textareaClass": string;
+    }
+
     interface IntrinsicElements {
-        "sc-query-field": ScQueryField;
-        "sc-spreadsheet-uploader": ScSpreadsheetUploader;
-        "sc-taxonomy": ScTaxonomy;
-        "sc-textarea": ScTextarea;
+        "sc-query-field": Omit<ScQueryField, keyof ScQueryFieldAttributes> & { [K in keyof ScQueryField & keyof ScQueryFieldAttributes]?: ScQueryField[K] } & { [K in keyof ScQueryField & keyof ScQueryFieldAttributes as `attr:${K}`]?: ScQueryFieldAttributes[K] } & { [K in keyof ScQueryField & keyof ScQueryFieldAttributes as `prop:${K}`]?: ScQueryField[K] };
+        "sc-spreadsheet-uploader": Omit<ScSpreadsheetUploader, keyof ScSpreadsheetUploaderAttributes> & { [K in keyof ScSpreadsheetUploader & keyof ScSpreadsheetUploaderAttributes]?: ScSpreadsheetUploader[K] } & { [K in keyof ScSpreadsheetUploader & keyof ScSpreadsheetUploaderAttributes as `attr:${K}`]?: ScSpreadsheetUploaderAttributes[K] } & { [K in keyof ScSpreadsheetUploader & keyof ScSpreadsheetUploaderAttributes as `prop:${K}`]?: ScSpreadsheetUploader[K] };
+        "sc-taxonomy": Omit<ScTaxonomy, keyof ScTaxonomyAttributes> & { [K in keyof ScTaxonomy & keyof ScTaxonomyAttributes]?: ScTaxonomy[K] } & { [K in keyof ScTaxonomy & keyof ScTaxonomyAttributes as `attr:${K}`]?: ScTaxonomyAttributes[K] } & { [K in keyof ScTaxonomy & keyof ScTaxonomyAttributes as `prop:${K}`]?: ScTaxonomy[K] };
+        "sc-textarea": Omit<ScTextarea, keyof ScTextareaAttributes> & { [K in keyof ScTextarea & keyof ScTextareaAttributes]?: ScTextarea[K] } & { [K in keyof ScTextarea & keyof ScTextareaAttributes as `attr:${K}`]?: ScTextareaAttributes[K] } & { [K in keyof ScTextarea & keyof ScTextareaAttributes as `prop:${K}`]?: ScTextarea[K] };
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "sc-query-field": LocalJSX.ScQueryField & JSXBase.HTMLAttributes<HTMLScQueryFieldElement>;
-            "sc-spreadsheet-uploader": LocalJSX.ScSpreadsheetUploader & JSXBase.HTMLAttributes<HTMLScSpreadsheetUploaderElement>;
-            "sc-taxonomy": LocalJSX.ScTaxonomy & JSXBase.HTMLAttributes<HTMLScTaxonomyElement>;
-            "sc-textarea": LocalJSX.ScTextarea & JSXBase.HTMLAttributes<HTMLScTextareaElement>;
+            "sc-query-field": LocalJSX.IntrinsicElements["sc-query-field"] & JSXBase.HTMLAttributes<HTMLScQueryFieldElement>;
+            "sc-spreadsheet-uploader": LocalJSX.IntrinsicElements["sc-spreadsheet-uploader"] & JSXBase.HTMLAttributes<HTMLScSpreadsheetUploaderElement>;
+            "sc-taxonomy": LocalJSX.IntrinsicElements["sc-taxonomy"] & JSXBase.HTMLAttributes<HTMLScTaxonomyElement>;
+            "sc-textarea": LocalJSX.IntrinsicElements["sc-textarea"] & JSXBase.HTMLAttributes<HTMLScTextareaElement>;
         }
     }
 }
